@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <property name="schemaName" value="generated_app"></property>
+    <property name="author=" value="db-designer"></property>
+    <changeSet id="v1-01-01" author="${author}">
+    
+ <createTable schemaName="${schemaName}" tableName="PackageManagement">
+	<column name="Id" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="Name" type="VARCHAR(250)" />
+    
+     <column name="Description" type="VARCHAR(250)" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="UIComp">
+	<column name="CompId" type="BIGINT" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="Name" type="VARCHAR(250)" />
+    
+     <column name="Title" type="VARCHAR(250)" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="Architecture">
+	<column name="Id" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="Name" type="VARCHAR(250)" />
+    
+     <column name="Description" type="VARCHAR(250)" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="Server">
+	<column name="Id" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="Name" type="VARCHAR(250)" />
+    
+     <column name="Description" type="VARCHAR(250)" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="UITemplate">
+	<column name="TemplateId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="TemplateName" type="VARCHAR(250)" />
+    
+     <column name="TemplateDescription" type="VARCHAR(250)" />
+    
+     <column name="DevelopedBy" type="VARCHAR(250)" />
+    
+     <column name="WebsiteReference" type="VARCHAR(250)" />
+    
+     <column name="RepoName" type="VARCHAR(250)" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="FrontendScreen">
+	<column name="FeScreenId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="ScreenName" type="VARCHAR(250)" />
+    
+     <column name="ScreenDescription" type="VARCHAR(250)" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="BuildTool">
+	<column name="Id" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="Name" type="VARCHAR(250)" />
+    
+     <column name="Description" type="VARCHAR(250)" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="UIField">
+	<column name="FieldId" type="BIGINT" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="Name" type="VARCHAR(250)" />
+    
+     <column name="FieldType" type="VARCHAR(250)" />
+    
+     <column name="Label" type="VARCHAR(250)" />
+    
+     <column name="FieldDesc" type="VARCHAR(250)" />
+    
+     <column name="NavFieldName" type="VARCHAR(250)" />
+    
+     <column name="FieldSequenceNumber" type="INTEGER" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="Document">
+	<column name="DocId" type="BIGINT" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="FileType" type="VARCHAR(250)" />
+    
+     <column name="FileName" type="VARCHAR(250)" />
+    
+ 	<column name="Content" type="BINARY"/>
+	<column name="DocFileType" type="VARCHAR(100)"/>
+	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="FrontendApp">
+	<column name="AppId" type="BIGINT" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+  	<column name="ProjectDetails_AppName" type="VARCHAR(250)"/>
+	<column name="ProjectDetails_AppDescription" type="VARCHAR(250)"/>
+	<column name="ProjectDetails_Namespace" type="VARCHAR(250)"/>
+	<column name="ProjectDetails_PackageManagement" type="VARCHAR(250)"/>
+	<column name="ProjectDetails_BuildTool" type="VARCHAR(250)"/>
+	<column name="ProjectDetails_Server" type="VARCHAR(250)"/>
+	<column name="ProjectDetails_Architecture" type="VARCHAR(250)"/>
+      <column name="Documentation" type="VARCHAR(250)" />
+    
+      <column name="Company_name" type="VARCHAR(250)" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="TemplateScreen">
+	<column name="TeScreenId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="ScreenName" type="VARCHAR(250)" />
+    
+     <column name="ScreenDescription" type="VARCHAR(250)" />
+    
+     <column name="Documentation" type="VARCHAR(250)" />
+    
+     <column name="ScreenLayout" type="VARCHAR(250)" />
+    
+     <column name="ScreenURL" type="VARCHAR(250)" />
+    
+     <column name="ScreenFilePath" type="VARCHAR(250)" />
+    
+ 	
+</createTable>
+	
+  <createTable schemaName="${schemaName}" tableName="UICompFields">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="CompId" type="BIGINT" />
+	<column name="FieldId" type="BIGINT" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="FrontendAppSelectedScreens">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="AppId" type="BIGINT" />
+	<column name="FeScreenId" type="INTEGER" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="FrontendScreenUIComponents">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="FeScreenId" type="INTEGER" />
+	<column name="CompId" type="BIGINT" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="UITemplateAllScreens">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="TemplateId" type="INTEGER" />
+	<column name="TeScreenId" type="INTEGER" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="FrontendAppMetaTags">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="AppId" type="BIGINT" />
+	<column name="MetaTags" type="VARCHAR(250)" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="FrontendAppSelectedScreenIds">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="AppId" type="BIGINT" />
+	<column name="SelectedScreenIds" type="INTEGER" />
+</createTable>
+
+ 	<addForeignKeyConstraint baseTableName="UICompFields" baseTableSchemaName="${schemaName}"  baseColumnNames="CompId" constraintName="UIField_CompId_fk"
+	                                  referencedTableName="UIComp" referencedTableSchemaName="${schemaName}" referencedColumnNames="CompId"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="UICompFields" baseTableSchemaName="${schemaName}"  baseColumnNames="FieldId" constraintName="UIField_FieldId_fk"
+	                                  referencedTableName="UIField" referencedTableSchemaName="${schemaName}" referencedColumnNames="FieldId"/>
+ 
+ 	<addForeignKeyConstraint baseTableName="FrontendAppSelectedScreens" baseTableSchemaName="${schemaName}"  baseColumnNames="AppId" constraintName="FrontendScreen_AppId_fk"
+	                                  referencedTableName="FrontendApp" referencedTableSchemaName="${schemaName}" referencedColumnNames="AppId"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="FrontendAppSelectedScreens" baseTableSchemaName="${schemaName}"  baseColumnNames="FeScreenId" constraintName="FrontendScreen_FeScreenId_fk"
+	                                  referencedTableName="FrontendScreen" referencedTableSchemaName="${schemaName}" referencedColumnNames="FeScreenId"/>
+ 
+ 	<addForeignKeyConstraint baseTableName="FrontendScreenUIComponents" baseTableSchemaName="${schemaName}"  baseColumnNames="FeScreenId" constraintName="UIComp_FeScreenId_fk"
+	                                  referencedTableName="FrontendScreen" referencedTableSchemaName="${schemaName}" referencedColumnNames="FeScreenId"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="FrontendScreenUIComponents" baseTableSchemaName="${schemaName}"  baseColumnNames="CompId" constraintName="UIComp_CompId_fk"
+	                                  referencedTableName="UIComp" referencedTableSchemaName="${schemaName}" referencedColumnNames="CompId"/>
+ 
+ 	<addForeignKeyConstraint baseTableName="UITemplateAllScreens" baseTableSchemaName="${schemaName}"  baseColumnNames="TemplateId" constraintName="TemplateScreen_TemplateId_fk"
+	                                  referencedTableName="UITemplate" referencedTableSchemaName="${schemaName}" referencedColumnNames="TemplateId"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="UITemplateAllScreens" baseTableSchemaName="${schemaName}"  baseColumnNames="TeScreenId" constraintName="TemplateScreen_TeScreenId_fk"
+	                                  referencedTableName="TemplateScreen" referencedTableSchemaName="${schemaName}" referencedColumnNames="TeScreenId"/>
+ 
+ 	<addForeignKeyConstraint baseTableSchemaName="${schemaName}" baseTableName="FrontendAppMetaTags" baseColumnNames="AppId" constraintName="FrontendApp_FrontendAppMetaTags_fk" referencedTableName="FrontendApp"
+                                 	referencedColumnNames="AppId" referencedTableSchemaName="${schemaName}"/>
+ 
+ 	<addForeignKeyConstraint baseTableSchemaName="${schemaName}" baseTableName="FrontendAppSelectedScreenIds" baseColumnNames="AppId" constraintName="FrontendApp_FrontendAppSelectedScreenIds_fk" referencedTableName="FrontendApp"
+                                 	referencedColumnNames="AppId" referencedTableSchemaName="${schemaName}"/>
+ 
+	
+ 
+ 
+ 
+ 
+ 	<addColumn tableName="UITemplate" schemaName="${schemaName}">
+	    <column name="UITemplateThumbnail" type="BIGINT"/>
+	</addColumn>
+	<addForeignKeyConstraint baseTableName="UITemplate" baseColumnNames="UITemplateThumbnail" baseTableSchemaName="${schemaName}" constraintName="UITemplate_Thumbnail_fk" referencedTableName="Document"
+	                                 referencedColumnNames="DocId" referencedTableSchemaName="${schemaName}"/>
+ 
+
+ 	<addColumn tableName="FrontendScreen" schemaName="${schemaName}">
+	    <column name="FrontendScreenTemplateScreen" type="INTEGER"/>
+	</addColumn>
+	<addForeignKeyConstraint baseTableName="FrontendScreen" baseColumnNames="FrontendScreenTemplateScreen" baseTableSchemaName="${schemaName}" constraintName="FrontendScreen_TemplateScreen_fk" referencedTableName="TemplateScreen"
+	                                 referencedColumnNames="TeScreenId" referencedTableSchemaName="${schemaName}"/>
+ 
+
+ 
+ 
+ 
+ 	<addColumn tableName="FrontendApp" schemaName="${schemaName}">
+	    <column name="FrontendAppLogo" type="BIGINT"/>
+	</addColumn>
+	<addForeignKeyConstraint baseTableName="FrontendApp" baseColumnNames="FrontendAppLogo" baseTableSchemaName="${schemaName}" constraintName="FrontendApp_Logo_fk" referencedTableName="Document"
+	                                 referencedColumnNames="DocId" referencedTableSchemaName="${schemaName}"/>
+ 
+	<addColumn tableName="FrontendApp" schemaName="${schemaName}">
+	    <column name="FrontendAppTemplate" type="INTEGER"/>
+	</addColumn>
+	<addForeignKeyConstraint baseTableName="FrontendApp" baseColumnNames="FrontendAppTemplate" baseTableSchemaName="${schemaName}" constraintName="FrontendApp_Template_fk" referencedTableName="UITemplate"
+	                                 referencedColumnNames="TemplateId" referencedTableSchemaName="${schemaName}"/>
+ 
+
+ 
+	    </changeSet>
+</databaseChangeLog>

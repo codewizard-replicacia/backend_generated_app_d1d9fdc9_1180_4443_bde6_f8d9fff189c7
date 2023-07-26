@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="Model">
+            <EntityType HasStream="false" Name="BuildTool">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="Name" Type="Edm.String" isUnique="false"/>
+                <Property Name="Description" Type="Edm.String" isUnique="false"/>
+            </EntityType>
+            <EntityType HasStream="false" Name="UIComp">
+                <Key>
+                    <PropertyRef Name="CompId"/>
+                </Key>
+                <Property Name="CompId" Type="Edm.Int64" isUnique="false"/>
+                <Property Name="Name" Type="Edm.String" isUnique="false"/>
+                <Property Name="Title" Type="Edm.String" isUnique="false"/>
+                <NavigationProperty Name="Fields" Type="Collection(Model.UIField)"/>
+            </EntityType>
+            <EntityType HasStream="true" Name="Document">
+                <Key>
+                    <PropertyRef Name="DocId"/>
+                </Key>
+                <Property Name="DocId" Type="Edm.Int64" isUnique="false"/>
+                <Property Name="FileType" Type="Edm.String" isUnique="false"/>
+                <Property Name="FileName" Type="Edm.String" isUnique="false"/>
+            </EntityType>
+            <EntityType HasStream="false" Name="FrontendApp">
+                <Key>
+                    <PropertyRef Name="AppId"/>
+                </Key>
+                <Property Name="AppId" Type="Edm.Int64" isUnique="false"/>
+                <Property Name="ProjectDetails" Type="Model.BasicDetails" isUnique="false"/>
+                <Property Name="MetaTags" Type="Collection(Edm.String)" isUnique="false"/>
+                <Property Name="Documentation" Type="Edm.String" isUnique="false"/>
+                <Property Name="SelectedScreenIds" Type="Collection(Edm.Int32)" isUnique="false"/>
+                <Property Name="Company_name" Type="Edm.String" isUnique="false"/>
+                <NavigationProperty Name="Logo" Type="Model.Document"/>
+                <NavigationProperty Name="SelectedScreens" Type="Collection(Model.FrontendScreen)"/>
+                <NavigationProperty Name="Template" Type="Model.UITemplate"/>
+            </EntityType>
+            <EntityType HasStream="false" Name="Architecture">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="Name" Type="Edm.String" isUnique="false"/>
+                <Property Name="Description" Type="Edm.String" isUnique="false"/>
+            </EntityType>
+            <EntityType HasStream="false" Name="UITemplate">
+                <Key>
+                    <PropertyRef Name="TemplateId"/>
+                </Key>
+                <Property Name="TemplateId" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="TemplateName" Type="Edm.String" isUnique="true"/>
+                <Property Name="TemplateDescription" Type="Edm.String" isUnique="false"/>
+                <Property Name="DevelopedBy" Type="Edm.String" isUnique="false"/>
+                <Property Name="WebsiteReference" Type="Edm.String" isUnique="false"/>
+                <Property Name="RepoName" Type="Edm.String" isUnique="false"/>
+                <NavigationProperty Name="Thumbnail" Type="Model.Document"/>
+                <NavigationProperty Name="AllScreens" Type="Collection(Model.TemplateScreen)"/>
+            </EntityType>
+            <EntityType HasStream="false" Name="Server">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="Name" Type="Edm.String" isUnique="false"/>
+                <Property Name="Description" Type="Edm.String" isUnique="false"/>
+            </EntityType>
+            <EntityType HasStream="false" Name="PackageManagement">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="Name" Type="Edm.String" isUnique="false"/>
+                <Property Name="Description" Type="Edm.String" isUnique="false"/>
+            </EntityType>
+            <EntityType HasStream="false" Name="TemplateScreen">
+                <Key>
+                    <PropertyRef Name="TeScreenId"/>
+                </Key>
+                <Property Name="TeScreenId" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="ScreenName" Type="Edm.String" isUnique="false"/>
+                <Property Name="ScreenDescription" Type="Edm.String" isUnique="false"/>
+                <Property Name="Documentation" Type="Edm.String" isUnique="false"/>
+                <Property Name="ScreenLayout" Type="Edm.String" isUnique="false"/>
+                <Property Name="ScreenURL" Type="Edm.String" isUnique="false"/>
+                <Property Name="ScreenFilePath" Type="Edm.String" isUnique="false"/>
+            </EntityType>
+            <EntityType HasStream="false" Name="UIField">
+                <Key>
+                    <PropertyRef Name="FieldId"/>
+                </Key>
+                <Property Name="FieldId" Type="Edm.Int64" isUnique="false"/>
+                <Property Name="Name" Type="Edm.String" isUnique="false"/>
+                <Property Name="FieldType" Type="Edm.String" isUnique="false"/>
+                <Property Name="Label" Type="Edm.String" isUnique="false"/>
+                <Property Name="FieldDesc" Type="Edm.String" isUnique="false"/>
+                <Property Name="NavFieldName" Type="Edm.String" isUnique="false"/>
+                <Property Name="FieldSequenceNumber" Type="Edm.Int32" isUnique="false"/>
+            </EntityType>
+            <EntityType HasStream="false" Name="FrontendScreen">
+                <Key>
+                    <PropertyRef Name="FeScreenId"/>
+                </Key>
+                <Property Name="FeScreenId" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="ScreenName" Type="Edm.String" isUnique="false"/>
+                <Property Name="ScreenDescription" Type="Edm.String" isUnique="false"/>
+                <NavigationProperty Name="TemplateScreen" Type="Model.TemplateScreen"/>
+                <NavigationProperty Name="UIComponents" Type="Collection(Model.UIComp)"/>
+            </EntityType>
+            <EntityContainer Name="Container">
+                <EntitySet Name="BuildTools" EntityType="Model.BuildTool"/>
+                <EntitySet Name="UIComps" EntityType="Model.UIComp">
+                    <NavigationPropertyBinding Path="Fields" Target="UIFields"/>
+                </EntitySet>
+                <EntitySet Name="Documents" EntityType="Model.Document"/>
+                <EntitySet Name="FrontendApps" EntityType="Model.FrontendApp">
+                    <NavigationPropertyBinding Path="Logo" Target="Documents"/>
+                    <NavigationPropertyBinding Path="SelectedScreens" Target="FrontendScreens"/>
+                    <NavigationPropertyBinding Path="Template" Target="UITemplates"/>
+                </EntitySet>
+                <EntitySet Name="Architectures" EntityType="Model.Architecture"/>
+                <EntitySet Name="UITemplates" EntityType="Model.UITemplate">
+                    <NavigationPropertyBinding Path="Thumbnail" Target="Documents"/>
+                    <NavigationPropertyBinding Path="AllScreens" Target="TemplateScreens"/>
+                </EntitySet>
+                <EntitySet Name="Servers" EntityType="Model.Server"/>
+                <EntitySet Name="PackageManagements" EntityType="Model.PackageManagement"/>
+                <EntitySet Name="TemplateScreens" EntityType="Model.TemplateScreen"/>
+                <EntitySet Name="UIFields" EntityType="Model.UIField"/>
+                <EntitySet Name="FrontendScreens" EntityType="Model.FrontendScreen">
+                    <NavigationPropertyBinding Path="TemplateScreen" Target="TemplateScreens"/>
+                    <NavigationPropertyBinding Path="UIComponents" Target="UIComps"/>
+                </EntitySet>
+            </EntityContainer>
+            <ComplexType Name="BasicDetails">
+                <Property Name="AppName" Type="Edm.String" isUnique="false"/>
+                <Property Name="AppDescription" Type="Edm.String" isUnique="false"/>
+                <Property Name="Namespace" Type="Edm.String" isUnique="false"/>
+                <Property Name="PackageManagement" Type="Edm.String" isUnique="false"/>
+                <Property Name="BuildTool" Type="Edm.String" isUnique="false"/>
+                <Property Name="Server" Type="Edm.String" isUnique="false"/>
+                <Property Name="Architecture" Type="Edm.String" isUnique="false"/>
+            </ComplexType>
+            <ComplexType Name="AdvancedDetails">
+                <Property Name="CorsStatus" Type="Edm.Boolean" isUnique="false"/>
+            </ComplexType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
